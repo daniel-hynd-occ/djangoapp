@@ -1,0 +1,29 @@
+{% extends "base_registration.html" %}
+
+{% block body %}
+<div style="display: flex; width: 100%; justify-content:center">
+    <div class="login-container">
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div>
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
+        <div>
+            {{ form.password.label_tag }}
+            {{ form.password }}
+        </div>
+        {% if form.errors %}
+        <div>
+            <p class="text_error">Your username and password didn't match. Please try again.</p>
+        </div>
+        {% endif %}
+        <button type="submit" class="slds-button button_brand">Login</button>
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+
+    {# Assumes you setup the password_reset view in your URLconf #}
+    {% comment %} <p><a href="{% url 'password_reset' %}">Lost password?</a></p> {% endcomment %}
+    </div>
+</div>
+{% endblock %}

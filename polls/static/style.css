@@ -1,0 +1,224 @@
+body, html {
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-bar a {
+    color: white;
+    font-size: 14;
+}
+
+.inner-container {
+    max-width: 1024px;
+    width: 100%;
+}
+
+.header-bar {
+    background-color: #002147;
+    color: white;
+    height: 120px;
+    display: flex;
+	flex-direction: row;
+	align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.header-contents {
+	display: flex;
+	flex:1;
+	flex-direction: row;
+	align-items: center;
+    gap: 8px;
+}
+
+.header-title {
+    font-size: 32;
+}
+
+.logo {
+    width: 150px;
+    height: 48px;
+    border: solid 1px #707070;
+    border-radius: 4px;
+}
+
+.header-links {
+	padding: 20px;
+	gap: 25px;
+	color: #fefefe;
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.header-breadcrumb-bar {
+    background-color: #e9ecef;
+    color: #868e96;
+    font-size: 16px;
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-contents {
+    display: flex;
+    gap: 25px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.body-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.projects-action-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.project-box {
+    background-color: white;
+    border: 1px solid #b7b7b7;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 16px;
+}
+
+.project-box-name {
+    font-size: 20px;
+}
+
+.project-box-body {
+    margin-top: 11px;
+    margin-bottom: 11px;
+    display: flex;
+    gap: 14px;
+}
+
+.project-box-description {
+    flex: 1;
+    font-size: 16px;
+}
+
+.project-box-date {
+    font-size: 13px;
+    color: #6e757d;
+}
+
+.project-create-form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+}
+
+.project-create-form h1 {
+    font-weight: normal;
+    font-size: 28px;
+    margin-bottom: 26px;
+}
+
+.project-create-form h2 {
+    font-weight: normal;
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+
+.project-create-form label {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.project-create-form input {
+    margin-top: 7px;
+    margin-bottom: 16px;
+    padding: 7px 14px;
+}
+
+.project-create-form textarea {
+    margin-top: 7px;
+    margin-bottom: 16px;
+    padding: 7px 14px;
+}
+
+.project-create-form button[type="submit"] {
+    float: right;
+}
+
+.variable-sets-list {
+    padding: 25px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.variable-sets-list hr {
+    margin: 0px;
+}
+
+.variable-sets-list-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-container {
+    display: flex;
+    width: 413px;
+    flex-direction: column;
+}
+
+.login-container label {
+    display: block;
+    margin-top: 16px;
+    font-size: 16pt;
+    line-height: 24pt;
+}
+
+.login-container button {
+    margin-top: 16px;
+}
+
+.login-container input {
+    padding-top: 0;
+    padding-right: var(--sds-c-input-spacing-horizontal-end,1rem);
+    padding-bottom: 0;
+    padding-left: var(--sds-c-input-spacing-horizontal-start,.75rem);
+    width: 100%;
+    min-height: calc(1.875rem + 2px);
+    line-height: 1.875rem;
+    border: 1px solid var(--sds-c-input-color-border,#dddbda);
+    border-radius: var(--sds-c-input-radius-border,.25rem);
+    background-color: var(--sds-c-input-color-background,#fff);
+    color: var(--sds-c-input-text-color);
+    box-shadow: var(--sds-c-input-shadow);
+    transition: border .1s linear,background-color .1s linear;
+    display: inline-block;
+}
