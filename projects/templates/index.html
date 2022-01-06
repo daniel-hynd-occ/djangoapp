@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+<span>Home</span>
+{% endblock %}
+
+{% block body %}
+<div class="projects-action-bar">
+    <a href="/projects/create">
+        <button class="slds-button button_brand ">Create new project</button>
+    </a>
+</div>
+<div class="projects-list">
+{% for project in projects %}
+    <div class="project-box">
+        <span class="project-box-name">{{ project.protocol_title }}</span>
+        <div class="project-box-body">
+            <div class="project-box-description">{{project.isac_protocol}}</div>
+            <a href="/projects/delete/{{ project.id}}"><button class="slds-button button">Delete</button></a>
+            <a href="/projects/details/{{ project.id}}"><button class="slds-button button_brand ">Open project</button></a>
+        </div>
+        {% comment %} <span class="project-box-date">{{ project.date_created|date:'j F Y' }}</span> {% endcomment %}
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

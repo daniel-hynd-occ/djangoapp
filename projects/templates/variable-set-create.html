@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+<a href="/projects"><button class="slds-button button">Home</button></a>
+<span> / {{project.name}}</span>
+{% endblock %}
+
+{% block body %}
+<form action="/projects/details/{{project.id}}/variable-sets/create" method="post">
+    <div class="project-create-form">
+        {% csrf_token %}
+        <h1>Variable set</h1>
+        {{ form }}
+        <div>
+            <button class="slds-button button_brand" type="submit">Add</button>
+            <a href="/projects/details/{{project.id}}/variable-sets"><button class="slds-button button_neutral" style="float: right; margin-right: 16px" type="button">Cancel</button></a>
+        </div>
+    </div>
+</form>
+{% endblock %}

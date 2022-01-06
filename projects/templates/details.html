@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+<a href="/projects"><button class="slds-button button">Home</button></a>
+<span> / {{project.name}}</span>
+{% endblock %}
+
+{% block body %}
+<div class="project-create-form">
+    <div style="display: flex; align-items: center">
+        <h1>{{project.name}}</h1>
+        <div style="flex: 1">
+            <a href="/projects/update/{{project.id}}"><button class="slds-button button_neutral" style="float: right">Update project details</button></a>
+        </div>
+    </div>
+    <ul class="slds-tabs_default__nav" role="tablist">
+        <li class="slds-tabs_default__item slds-is-active" title="Dashboard" role="presentation"><a class="slds-tabs_default__link" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-1" id="tab-default-1__item">Dashboard</a></li>
+        <li class="slds-tabs_default__item" title="Database builder" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}/database-builder" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Database builder</a></li>
+        <li class="slds-tabs_default__item" title="Variable definition" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}/variable-sets" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">Variable Definition</a></li>
+        <li class="slds-tabs_default__item" title="Variable extraction" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}/variable-extractions" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-4" id="tab-default-4__item">Variable Extraction</a></li>
+    </ul>
+    <div class="variable-sets-list">
+        <h2>Status</h2>
+        <ul style="list-style-type: circle">
+            {% if project.database_builder_state == project.DatabaseBuilderState.NOT_STARTED %}
+                <li>Database not built</li>
+            {% elif project.database_builder_state == project.DatabaseBuilderState.RUNNING %}
+                <li>Database builder running</li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

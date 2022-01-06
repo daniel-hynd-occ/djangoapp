@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+<a href="/projects"><button class="slds-button button">Home</button></a>
+<span> / {{project.name}}</span>
+{% endblock %}
+
+{% block body %}
+<div class="project-create-form">
+    <div style="display: flex; align-items: center">
+        <h1>{{project.name}}</h1>
+        <div style="flex: 1">
+            <a href="/projects/update/{{project.id}}"><button class="slds-button button_neutral" style="float: right">Update project details</button></a>
+        </div>
+    </div>
+    <ul class="slds-tabs_default__nav" role="tablist">
+        <li class="slds-tabs_default__item" title="Dashboard" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-1" id="tab-default-1__item">Dashboard</a></li>
+        <li class="slds-tabs_default__item" title="Database builder" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}/database-builder" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Database builder</a></li>
+        <li class="slds-tabs_default__item slds-is-active" title="Variable definition" role="presentation"><a class="slds-tabs_default__link" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">Variable Definition</a></li>
+        <li class="slds-tabs_default__item" title="Variable extraction" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}/variable-extractions" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-4" id="tab-default-4__item">Variable Extraction</a></li>
+    </ul>
+    <div class="variable-sets-list">
+        <h2>Variable Sets</h2>
+        {% if variable_sets.count > 0 %}
+        {% for variable_set in variable_sets %}
+            <hr/>
+            <div class="variable-sets-list-item">
+                <span>{{variable_set.name}}</span>
+                <a href="/projects/details/{{ project.id}}/variable-sets/{{variable_set.id}}"><button class="slds-button button_neutral">Edit</button></a>
+            </div>
+        {% endfor %}
+        <hr/>
+        {% endif %}
+        <a href="/projects/details/{{ project.id}}/variable-sets/create"><button class="slds-button button_brand">Add variable set</button></a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+<a href="/projects"><button class="slds-button button">Home</button></a>
+<span> / {{project.name}}</span>
+{% endblock %}
+
+{% block body %}
+<div class="project-create-form">
+    <div style="display: flex; align-items: center">
+        <h1>{{project.name}}</h1>
+        <div style="flex: 1">
+            <a href="/projects/update/{{project.id}}"><button class="slds-button button_neutral" style="float: right">Update project details</button></a>
+        </div>
+    </div>
+    <ul class="slds-tabs_default__nav" role="tablist">
+        <li class="slds-tabs_default__item" title="Dashboard" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-1" id="tab-default-1__item">Dashboard</a></li>
+        <li class="slds-tabs_default__item slds-is-active" title="Database builder" role="presentation"><a class="slds-tabs_default__link" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Database builder</a></li>
+        <li class="slds-tabs_default__item" title="Variable definition" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}/variable-sets" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">Variable Definition</a></li>
+        <li class="slds-tabs_default__item" title="Variable extraction" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}/variable-extractions" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-4" id="tab-default-4__item">Variable Extraction</a></li>
+    </ul>
+    <div class="database-builder-form">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="slds-form-element "><label class="slds-form-element__label" for="197">Input directory</label></div>
+            {% if project.database_builder_state == project.DatabaseBuilderState.NOT_STARTED %}
+                <div class="slds-form-element__control"><input type="text" placeholder="Enter directory path" required="true" value="{{project.input_directory}}" class="slds-input" name="input_directory"/></div>
+                <button class="slds-button button_brand" type="submit">Build database</button>
+            {% elif project.database_builder_state == project.DatabaseBuilderState.RUNNING %}
+                <div class="slds-form-element__control"><input type="text" placeholder="Enter directory path" required="true" value="{{project.input_directory}}" class="slds-input" name="input_directory" readonly/></div>
+                <div class="slds-form-element database-builder-form-build-status-container">
+                    <div class="database-builder-form-build-status-bar">
+                        <label class="slds-form-element__label" for="197">Build status</label>
+                        <div class="slds-progress-bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" aria-labelledby="progress-bar-label-id-6" aria-label="Datbase build progress" role="progressbar">
+                            <span class="slds-progress-bar__value" style="width:10%"></span>
+                        </div>
+                    </div>
+                    <button class="slds-button button_destructive " type="submit" style="margin-top:0px">Cancel build</button>
+                </div>
+            {% endif %}
+        </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

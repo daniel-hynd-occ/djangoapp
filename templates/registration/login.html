@@ -12,6 +12,7 @@
         <div>
             {{ form.password.label_tag }}
             {{ form.password }}
+            <p><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
         </div>
         {% if form.errors %}
         <div>
@@ -19,11 +20,9 @@
         </div>
         {% endif %}
         <button type="submit" class="slds-button button_brand">Login</button>
+        <a href="/accounts/register">Sign Up</a>
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
-
-    {# Assumes you setup the password_reset view in your URLconf #}
-    {% comment %} <p><a href="{% url 'password_reset' %}">Lost password?</a></p> {% endcomment %}
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+<a href="/projects"><button class="slds-button button">Home</button></a>
+<span> / New project</span>
+{% endblock %}
+
+{% block body %}
+<form action="/projects/create/" method="post">
+    <div class="project-create-form">
+        {% csrf_token %}
+        <h1>Project details</h1>
+        {{ form }}
+        <div>
+            <button class="slds-button button_brand" type="submit">Save</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'components.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+<div class="header-container">
+    <div class="header-bar">
+        <div class="inner-container">
+            <div class="header-contents">
+                <img src="{% static 'oxford_uni.png'%}" alt = "oxford uni logo" class="logo">
+                <a href="/projects"><span class="header-title">Curator</span></a>
+                <div class = "header-links">
+                    <a href="">Username</a>
+                    <a href="/accounts/logout">Log out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-breadcrumb-bar">
+        <div class="inner-container">
+            {% block breadcrumb %}{% endblock  %}
+        </div>
+    </div>
+</div>
+<div class="body-container">
+    <div class="inner-container">
+        {% block body %}{% endblock %}
+    </div>
+</div>
+<div class="header-container">
+    <div class="header-bar" style="height: 60">
+        <div class="inner-container">
+            <div class="footer-contents">
+                <a href="/about">About</a>
+                <a href="/privacy">Privacy</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+<a href="/projects"><button class="slds-button button">Home</button></a>
+<span> / </span>
+<a href="/projects/details/{{project.id}}"><button class="slds-button button">{{project.name}}</button></a>
+<span> / {{variable_extraction.name}}</span>
+{% endblock %}
+
+{% block body %}
+<div class="project-create-form">
+    <div style="display: flex; align-items: center">
+        <h1>{{project.name}}</h1>
+        <div style="flex: 1">
+            <a href="/projects/update/{{project.id}}"><button class="slds-button button_neutral" style="float: right">Update project details</button></a>
+        </div>
+    </div>
+    <ul class="slds-tabs_default__nav" role="tablist">
+        <li class="slds-tabs_default__item" title="Dashboard" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-1" id="tab-default-1__item">Dashboard</a></li>
+        <li class="slds-tabs_default__item" title="Database builder" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}/database-builder" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Database builder</a></li>
+        <li class="slds-tabs_default__item" title="Variable definition" role="presentation"><a class="slds-tabs_default__link" href="/projects/details/{{project.id}}/variable-sets" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">Variable Definition</a></li>
+        <li class="slds-tabs_default__item slds-is-active" title="Variable extraction" role="presentation"><a class="slds-tabs_default__link" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-4" id="tab-default-4__item">Variable Extraction</a></li>
+    </ul>
+    <div class="database-builder-form">
+        <div class="variable-set-name-container" style="align-items: center; margin-bottom: 18px">
+            <span class="variable-set-name" style="flex: 1">{{variable_extraction.name}}</span>
+            <a href="/projects/details/{{project.id}}/variable-extractions"><button class="slds-button button_brand" style="float: right; margin-right: 16px" type="button">Close</button></a>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            {% if variable_extraction.state == variable_extraction.VariableExtractionState.NOT_STARTED %}
+                <button class="slds-button button_brand" type="submit">Extract</button>
+            {% elif variable_extraction.state == variable_extraction.VariableExtractionState.RUNNING %}
+                <div class="slds-form-element database-builder-form-build-status-container">
+                    <div class="database-builder-form-build-status-bar">
+                        <label class="slds-form-element__label" for="197">Extraction status</label>
+                        <div class="slds-progress-bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="1" aria-labelledby="progress-bar-label-id-6" aria-label="Datbase build progress" role="progressbar">
+                            <span class="slds-progress-bar__value" style="width:1%"></span>
+                        </div>
+                    </div>
+                    <button class="slds-button button_destructive " type="submit" style="margin-top:0px">Cancel extraction</button>
+                </div>
+            {% endif %}
+        </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
