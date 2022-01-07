@@ -5,7 +5,43 @@
     <div class="login-container">
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div>
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {% for error in form.username.errors %}
+            <p class="text_error">{{ error|escape }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {% for error in form.email.errors %}
+            <p class="text_error">{{ error|escape }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+            <div style="font-style: italic;">
+            {{ form.password1.help_text }}
+            </div>
+            {% for error in form.password1.errors %}
+            <p class="text_error">{{ error|escape }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+            {% for error in form.password2.errors %}
+            <p class="text_error">{{ error|escape }}</p>
+            {% endfor %}
+        </div>
+        <div>
+        {% for error in form.non_field_errors %}
+        <p class="text_error">{{ error|escape }}</p>
+        {% endfor %}
+        </div>
+
         <button type="submit" class="slds-button button_brand">Register</button>
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
