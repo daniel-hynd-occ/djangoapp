@@ -16,7 +16,9 @@
         </div>
         {% if form.errors %}
         <div>
-            <p class="text_error">Your username and password didn't match. Please try again.</p>
+            {% for error in form.non_field_errors %}
+            <p class="text_error">{{error|escape}}</p>
+            {% endfor %}
         </div>
         {% endif %}
         <button type="submit" class="slds-button button_brand">Login</button>
