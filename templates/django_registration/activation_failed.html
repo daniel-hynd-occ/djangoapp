@@ -1,0 +1,10 @@
+{% extends "base_registration.html" %}
+
+{% block body %}
+<div style="display: flex; width: 100%; justify-content:center; flex-direction: column">
+    <h3 style="margin-top: 20px; margin-bottom: 20px;">Activation Failed</h3>
+    <div>Your account could not be activated. Please contact the system administrator for more information.</div>
+    <p class="text_error">{{ activation_error.message|escape }}</p>
+    {% endfor %}
+</div>
+{% endblock %}
