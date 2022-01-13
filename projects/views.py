@@ -2,7 +2,6 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-import projects
 
 from projects.forms import DatabaseBuilderForm, ProjectForm, VariableExtractionForm, VariableSetForm
 

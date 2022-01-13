@@ -1,3 +1,0 @@
-To activate your Curator account, please visit the following page:
-
-{{ scheme }}://{{ site.domain }}{% url 'django_registration_activate' activation_key=activation_key %}
