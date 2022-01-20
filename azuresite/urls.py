@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from registration.forms import RegistrationFormUniqueEmail
+from registration.backends.default.views import RegistrationView
 
 urlpatterns = [
     path('', include('projects.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/register/', RegistrationView.as_view(form_class=RegistrationFormUniqueEmail), name='registration_register'),
     path('accounts/', include('registration.backends.default.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('projects/', include('projects.urls'))
