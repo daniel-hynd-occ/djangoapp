@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Project(models.Model):
 
@@ -7,7 +8,7 @@ class Project(models.Model):
         RUNNING = 1
         COMPLETE = 2
 
-    isac_protocol = models.CharField(max_length=256)
+    isac_protocol = models.CharField(max_length=9)
     isac_approved = models.BooleanField()
     name = models.CharField(max_length=256)
     protocol_title = models.CharField(max_length=1024)
@@ -17,6 +18,7 @@ class Project(models.Model):
         default=DatabaseBuilderState.NOT_STARTED
     )
     input_directory = models.CharField(max_length=1024)
+    contributors = models.ManyToManyField(User, blank=True)
 
 class VariableSet(models.Model):
     name = models.CharField(max_length=256)

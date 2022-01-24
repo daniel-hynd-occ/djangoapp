@@ -1,6 +1,7 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from projects.forms import DatabaseBuilderForm, ProjectForm, VariableExtractionForm, VariableSetForm
@@ -17,28 +18,28 @@ def create(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
         if form.is_valid():
-            project = form.save(commit=False)
-            project.name = "[Name]"
-            project.save()
+            form.save()
             return HttpResponseRedirect(reverse('index'))
     
     else:
-        form = ProjectForm(label_suffix="")
-        return render(request, 'create.html', {'form': form})
+        form = ProjectForm(label_suffix=":")
+        user_list = User.objects.all()
+        return render(request, 'create.html', {'form': form, 'user_list': user_list})
 
 @login_required
 def update(request, id):
+    project = get_object_or_404(Project, pk=id)
+    
     if request.method == 'POST':
-        form = ProjectForm(request.POST)
+        form = ProjectForm(request.POST, instance=project)
         if form.is_valid():
-            print("is_valid")
-            project = form.save()
-            return HttpResponseRedirect(reverse('details', kwargs={id: id}))
+            form.save()
+            return HttpResponseRedirect(reverse('details', kwargs={'id': id}))
     
     else:
-        project = get_object_or_404(Project, pk=id)
+        name = project.name
         form = ProjectForm(instance=project)
-        return render(request, 'create.html', {'form': form})
+        return render(request, 'update.html', {'form': form, 'name': name, 'id': id})
 
 @login_required
 def details(request, id):

@@ -120,6 +120,7 @@ body, html {
     margin-bottom: 11px;
     display: flex;
     gap: 14px;
+    align-items: baseline;
 }
 
 .project-box-description {
@@ -221,4 +222,15 @@ body, html {
     box-shadow: var(--sds-c-input-shadow);
     transition: border .1s linear,background-color .1s linear;
     display: inline-block;
+}
+
+.form_grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 10px 20px;
+}
+
+.project-create-isac-protocol {
+    resize: none;
 }

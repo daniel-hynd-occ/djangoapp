@@ -16,7 +16,8 @@
         <span class="project-box-name">{{ project.protocol_title }}</span>
         <div class="project-box-body">
             <div class="project-box-description">{{project.isac_protocol}}</div>
-            <a href="/projects/delete/{{ project.id}}"><button class="slds-button button">Delete</button></a>
+            <a href="/projects/delete/{{ project.id}}"><button class="slds-button button" onclick="return confirm('Are you sure?')">Delete</button></a>
+            <a href="/projects/update/{{ project.id}}"><button class="slds-button button_neutral ">Update project details</button></a>
             <a href="/projects/details/{{ project.id}}"><button class="slds-button button_brand ">Open project</button></a>
         </div>
         {% comment %} <span class="project-box-date">{{ project.date_created|date:'j F Y' }}</span> {% endcomment %}

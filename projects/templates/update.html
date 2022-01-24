@@ -2,7 +2,7 @@
 
 {% block breadcrumb %}
 <a href="/projects"><button class="slds-button button">Home</button></a>
-<span> / New project</span>
+<span> / {{name}}</span>
 {% endblock %}
 
 {% block body %}
@@ -15,10 +15,10 @@
         document.getElementById("save").disabled = isDisabled;
 
         const excludes = [
-            "id_name",
             "id_isac_protocol",
             "id_protocol_title",
-            "id_isac_approved"
+            "id_isac_approved",
+            "id_name",
         ]
 
         const form = document.getElementById("form");
@@ -37,10 +37,10 @@
         }
     }
 
-    window.onload = () => {toggleIsacApprovedDependants(true);};
+    window.onload = () => {toggleIsacApprovedDependants(!{{form.isac_approved.value|lower}});};
 </script>
 
-<form action="/projects/create/" method="post">
+<form action="/projects/update/{{id}}" method="post">
     <div class="project-create-form">
         {% csrf_token %}
         <h1>Project details</h1>
@@ -53,7 +53,7 @@
         </div>
         <div>
             <button id="save" class="slds-button button_brand" type="submit" style="float:none">Save</button>
-            <a href="/projects"><button class="slds-button button_cancel" type="button">Cancel</button></a>
+            <a href="/projects/details/{{id}}"><button class="slds-button button_cancel" type="button">Cancel</button></a>
         </div>
     </div>
 </form>
