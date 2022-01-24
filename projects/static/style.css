@@ -120,6 +120,7 @@ body, html {
     margin-bottom: 11px;
     display: flex;
     gap: 14px;
+    align-items: baseline
 }
 
 .project-box-description {
@@ -243,4 +244,56 @@ body, html {
     background-color: #dfdfdf;
     color: #343a40;
     pointer-events: none;
+}
+
+.variable-sets-list-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-container {
+    display: flex;
+    width: 413px;
+    flex-direction: column;
+}
+
+.login-container label {
+    display: block;
+    margin-top: 16px;
+    font-size: 16pt;
+    line-height: 24pt;
+}
+
+.login-container button {
+    margin-top: 16px;
+}
+
+.login-container input {
+    padding-top: 0;
+    padding-right: var(--sds-c-input-spacing-horizontal-end,1rem);
+    padding-bottom: 0;
+    padding-left: var(--sds-c-input-spacing-horizontal-start,.75rem);
+    width: 100%;
+    min-height: calc(1.875rem + 2px);
+    line-height: 1.875rem;
+    border: 1px solid var(--sds-c-input-color-border,#dddbda);
+    border-radius: var(--sds-c-input-radius-border,.25rem);
+    background-color: var(--sds-c-input-color-background,#fff);
+    color: var(--sds-c-input-text-color);
+    box-shadow: var(--sds-c-input-shadow);
+    transition: border .1s linear,background-color .1s linear;
+    display: inline-block;
+}
+
+.form_grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 10px 20px;
+}
+
+.project-create-isac-protocol {
+    resize: none;
 }
